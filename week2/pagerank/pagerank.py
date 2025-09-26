@@ -175,6 +175,8 @@ def iterate_pagerank(corpus, damping_factor):
             sum_pages = 0 
             for page_linked in incoming_links[key]:#pages that links to this page
                 num_links = len(list(corpus[page_linked]))
+                if num_links == 0:#if no outgoing links
+                    num_links = num_pages
                 sum_pages += page_rank[page_linked]/num_links
             new_pr = val_1+ damping_factor* sum_pages
             new_dict[key] = new_pr
